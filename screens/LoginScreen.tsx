@@ -1,13 +1,19 @@
-import { TextInput, SafeAreaView, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { TextInput, SafeAreaView, StyleSheet, Text, View, TouchableOpacity, TouchableHighlight } from 'react-native'
 import React, { useState } from 'react'
+import { loginUser } from '../services/authService';
+import { useNavigation } from '@react-navigation/native';
 
 const LoginScreen = () => {
+
+  const navigation: any = useNavigation();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   //   TODO: Login Function
-  const login = () => {}
+  const login = () => {
+    loginUser(email, password);
+  }
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
@@ -32,8 +38,9 @@ const LoginScreen = () => {
         <TouchableOpacity style={styles.button} onPress={login}>
             <Text style={styles.buttonText}>Login Button</Text>
         </TouchableOpacity>
-
-        {/* TODO: Add Register Navigation */}
+        <TouchableHighlight onPress={() => navigation.navigate('Register')} underlayColor='lightgray' style={{ margin: 20, padding: 10, borderRadius: 5 }}>
+          <Text style={{ textAlign: 'center' }}>Don't have an account? Register Now</Text>
+        </TouchableHighlight>
 
       </View>  
       

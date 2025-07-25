@@ -1,27 +1,51 @@
-import { StyleSheet, Text, View, Button, SafeAreaView } from 'react-native'
+import { StyleSheet, Text, View, Button, SafeAreaView, TouchableOpacity } from 'react-native'
 import React from 'react'
+import { getUserInfo, LogOutUser } from '../services/authService'
 
 const ProfileScreen = () => {
 
-    // TODO: handle logout
-    const handleLogout = () => {}
+    const handleLogout = () => {
+        LogOutUser();
+    }
 
     return (
         <SafeAreaView>
             <View style={{padding:20}}>
-                <Text>Profile</Text>
+                <Text style={styles.title}>Profile Screen</Text>
 
-                {/* TODO: Show logged in user info */}
-                <Text>Email here</Text>
-                <Text>Username here</Text>
+                <Text style={styles.bodyText}>Email: {getUserInfo()?.email}</Text>
+                <Text style={styles.bodyText}>Uid: {getUserInfo()?.uid}</Text>
 
-                <Button 
-                    title="Sign Out"
-                    color="green"
-                    onPress={handleLogout} />
+                <TouchableOpacity style={styles.button} onPress={handleLogout}>
+                    <Text style={styles.buttonText}>Sign Out</Text>
+                </TouchableOpacity>
             </View>
         </SafeAreaView>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        padding: 20
+    },
+    title: {
+        fontSize: 30,
+        marginBottom: 10
+    },
+    bodyText: {
+        fontSize: 16,
+        marginBottom: 5
+    },
+    button: {
+        backgroundColor: "black",
+        textAlign: 'center',
+        padding: 10,
+        marginTop: 30
+    },
+    buttonText: {
+        textAlign: 'center',
+        color: 'white'
+    }
+})
 
 export default ProfileScreen
