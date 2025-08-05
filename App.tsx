@@ -6,6 +6,7 @@ import ProfileScreen from './screens/ProfileScreen';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase';
 import RegisterScreen from './screens/RegisterScreen';
+import ObjectsScreen from './screens/ObjectsScreen';
 
 // TODO: Navigation Container
 const Stack = createNativeStackNavigator();
@@ -35,7 +36,7 @@ export default function App() {
       { isLoggedIn ? (
           <Stack.Navigator initialRouteName="Profile">
             <Stack.Screen name="Profile" component={ProfileScreen} />
-            
+            <Stack.Screen name="Objects" component={ObjectsScreen} />
           </Stack.Navigator>
         ) : (
           <Stack.Navigator initialRouteName="Login">
